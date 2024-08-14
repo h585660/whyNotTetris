@@ -4,6 +4,7 @@ public class blocks {
 
     private static boolean left = false;
     private static boolean right = false;
+    private static boolean GO = false;
 
     grid editGrid = new grid();
 
@@ -24,7 +25,12 @@ public class blocks {
         x--;
     }
 
+    public void runTheLoop() {
+        insertSquare();
+    };
+
     public void convertGridSquare(boolean[][] grid, int x, int y) {
+        GO = true;
         int temp = 0;
         int initial = x;
         int resetX = 0;
@@ -50,7 +56,7 @@ public class blocks {
                 y = y - temp;
                 temp = 0;
                 x++;
-                if (x + 2 >= grid.length) {
+                if (x + 2 >= grid.length || grid[x + 1][y] == true || grid[x + 1][y + 1] == true) {
                     damn = true;
                 }
 
@@ -64,15 +70,16 @@ public class blocks {
                 grid[x - 2][y] = false;
                 grid[x - 2][y + 1] = false;
             }
-        }
-        try {
-            Thread.sleep(1500);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            e.printStackTrace();
+            try {
+                Thread.sleep(1500);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                e.printStackTrace();
+            }
         }
 
         editGrid.printGrid();
+        runTheLoop();
 
     }
 

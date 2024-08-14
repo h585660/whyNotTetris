@@ -18,7 +18,7 @@ public class Main {
         });
         keyInputThread.start();
 
-        block.insertSquare();
+        block.runTheLoop();
 
     }
 
