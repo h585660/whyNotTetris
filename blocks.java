@@ -1,4 +1,7 @@
+
 public class blocks {
+
+    grid editGrid = new grid();
 
     boolean[][] square = {
             { true, true },
@@ -11,7 +14,8 @@ public class blocks {
 
     public void convertGridSquare(boolean[][] grid, int x, int y) {
         int temp = 0;
-        int resetX = x;
+        int initial = x;
+        int resetX = 0;
         int resetY = y;
         boolean damn = false;
 
@@ -28,23 +32,28 @@ public class blocks {
                     damn = true;
                 }
                 x++;
+
             }
-            grid[resetX][resetY] = false;
-            grid[resetX][resetY + 1] = false;
-            resetX++;
+            editGrid.printGrid();
+            grid[x - 1][y] = false;
+            grid[x][y] = false;
+            grid[x - 1][y + 1] = false;
+            grid[x - 2][y] = false;
+            grid[x - 2][y + 1] = false;
+
             try {
-                Thread.sleep(1000); // 1000 milliseconds = 1 second
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
-                Thread.currentThread().interrupt(); // Restore interrupted status
+                Thread.currentThread().interrupt();
                 e.printStackTrace();
             }
-        }
-        if (damn == true) {
-            grid[resetX][resetY] = false;
-            grid[resetX][resetY + 1] = false;
-            grid[resetX + 1][resetY] = false;
-            grid[resetX + 1][resetY + 1] = false;
-        }
 
+        }
+        editGrid.printGrid();
+
+    }
+
+    public void insertSquare() {
+        convertGridSquare(editGrid.gridList, 0, 2);
     }
 }

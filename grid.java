@@ -1,7 +1,5 @@
 public class grid {
 
-    blocks square = new blocks();
-
     boolean[][] gridList = {
             { false, false, false, false, false, false },
             { false, false, false, false, false, false },
@@ -29,7 +27,4 @@ public class grid {
         }
     }
 
-    public void insertSquare() {
-        square.convertGridSquare(gridList, 2, 2);
-    }
 }
